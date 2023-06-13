@@ -3,6 +3,7 @@ package com.example.crud_06_09;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -41,15 +42,59 @@ public class StudentController {
         return "home";
     }
 
-    @GetMapping("/read")
+    @GetMapping("/home")
+    public String redirectToHome() {
+        return "redirect:/";
+    }
+
+    @GetMapping("/{id}")
     public String read(
-        @RequestParam("id")
-        Long id,
+        @PathVariable("id") Long id,
         Model model) {
         model.addAttribute(
             "student",
             studentService.readStudent(id)
         );
         return "read";
+    }
+
+    @GetMapping("/{id}/update-view")
+    public String updateView(Model model,
+        @PathVariable("id") Long id) {
+        model.addAttribute("student",
+            studentService.readStudent(id));
+
+        return "update";
+    }
+
+    @PostMapping("/{id}/update-view")
+    public String updateViewComplete(
+        @PathVariable("id") Long id,
+        @RequestParam("name") String name,
+        @RequestParam("email") String email
+        ) {
+
+        studentService.updateStudent(id, name, email);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/{id}/delete-view")
+    public String deleteView(
+        @PathVariable("id") Long id,
+        Model model
+    ) {
+        StudentDto studentDto = studentService.readStudent(id);
+        model.addAttribute("student", studentDto);
+        return "delete";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String delete(
+        @PathVariable("id") Long id
+    ) {
+        studentService.deleteStudent(id);
+
+        return "redirect:/home";
     }
 }
