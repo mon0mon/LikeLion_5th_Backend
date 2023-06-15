@@ -1,0 +1,27 @@
+/**
+ * @project LikeLion_Backend
+ * @author ARA
+ * @since 2023-06-15 : AM 11:45
+ */
+
+package com.example.jpa.dto;
+
+import com.example.jpa.entities.StudentEntity;
+import lombok.Data;
+
+@Data
+public class StudentDto {
+    private Long id;            //  Entity.id
+    private String name;        //  Entity.name
+    private String email;       //  Entity.email
+
+    //  정적 팩토리 메소드 패턴
+    //  static factory method pattern
+    public static StudentDto fromEntity(StudentEntity studentEntity) {
+        StudentDto dto = new StudentDto();
+        dto.setId(studentEntity.getId());
+        dto.setName(studentEntity.getName());
+        dto.setEmail(studentEntity.getEmail());
+        return dto;
+    }
+}

@@ -5,8 +5,11 @@
 
 package com.example.jpa;
 
+import com.example.jpa.dto.StudentDto;
+import com.example.jpa.entities.StudentEntity;
 import jakarta.annotation.PostConstruct;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,9 +34,15 @@ public class AppController {
     }
 
     @GetMapping("read-all")
-    public @ResponseBody String readAll() {
-        service.readStudentAll();
-        return "done-read-all";
+    public @ResponseBody List<StudentDto> readAll() {
+        List<StudentEntity> studentEntities = service.readStudentAll();
+
+        List<StudentDto> studentDtos = studentEntities
+            .stream()
+            .map(StudentDto::fromEntity)
+            .toList();
+
+        return studentDtos;
     }
 
     @GetMapping("read/{id}")

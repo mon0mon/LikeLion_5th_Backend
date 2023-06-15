@@ -5,6 +5,7 @@
 
 package com.example.jpa;
 
+import com.example.jpa.dto.StudentDto;
 import com.example.jpa.entities.StudentEntity;
 import com.example.jpa.repos.StudentRepository;
 import java.util.Arrays;
@@ -27,14 +28,15 @@ public class AppService {
     //  3. 모은 데이터를 가지고 응답 (의사결정)
 
     //  CREATE
-    public void createStudent(String name, Integer age, String phone, String email) {
+    public StudentDto createStudent(String name, Integer age, String phone, String email) {
         StudentEntity student = new StudentEntity();
         student.setName(name);
         student.setAge(age);
         student.setPhone(phone);
         student.setEmail(email);
 
-        studentRepository.save(student);
+        student = studentRepository.save(student);
+        return StudentDto.fromEntity(student);
     }
 
     //  READ
@@ -43,8 +45,9 @@ public class AppService {
     }
 
     //  READ ALL
-    public void readStudentAll() {
+    public List<StudentEntity> readStudentAll() {
         System.out.println(studentRepository.findAll());
+        return studentRepository.findAll();
     }
 
     //  UPDATE
