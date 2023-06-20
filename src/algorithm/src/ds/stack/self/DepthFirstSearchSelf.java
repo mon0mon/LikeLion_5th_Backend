@@ -75,6 +75,6 @@ public class DepthFirstSearchSelf {
         }
 
         //  TODO 답을 출력한다.
-        visitHistory.forEach(System.out::println);
+        System.out.println(visitHistory);
     }
 }
