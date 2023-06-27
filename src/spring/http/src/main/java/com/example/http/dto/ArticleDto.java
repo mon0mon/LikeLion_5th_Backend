@@ -1,6 +1,5 @@
 package com.example.http.dto;
 
-import java.util.List;
 import lombok.Data;
 
 // 블로그 게시글
@@ -16,6 +15,4 @@ import lombok.Data;
 public class ArticleDto {
     private String title;
     private String content;
-    private String writer;
-    private List<String> comments;
 }

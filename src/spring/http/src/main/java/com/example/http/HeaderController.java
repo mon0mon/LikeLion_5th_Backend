@@ -3,7 +3,6 @@ package com.example.http;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
@@ -55,11 +54,11 @@ public class HeaderController {
 //            @RequestHeader  // 모든 헤더를 다 가져올 때
 //            Map<String, String> headerMap
 
-            @RequestHeader  // 모든 헤더를 다 가져올 때
-            MultiValueMap<String, String> headerMap
-
 //            @RequestHeader  // 모든 헤더를 다 가져올 때
-//            HttpHeaders headerMap
+//            MultiValueMap<String, String> headerMap
+
+            @RequestHeader  // 모든 헤더를 다 가져올 때
+            HttpHeaders headerMap
     ) {
         log.info("POST /header-all");
 //        for (Map.Entry<String, String> entry: headerMap.entrySet()){
