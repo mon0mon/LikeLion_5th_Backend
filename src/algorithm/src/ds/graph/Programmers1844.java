@@ -52,7 +52,7 @@ public class Programmers1844 {
                     // 큐에 방문 대상으로 기록
                     visitNext.offer(new int[]{nextX, nextY, steps + 1});
                     // 효율성 검사 통과를 위해 방문 전에 기록한다.
-                    visited[nowX][nowY] = true;
+                    visited[nextX][nextY] = true;
                 }
             }
         }
