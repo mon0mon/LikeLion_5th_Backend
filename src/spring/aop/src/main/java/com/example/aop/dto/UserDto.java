@@ -1,9 +1,3 @@
-/**
- * @project LikeLion_Backend
- * @author ARA
- * @since 2023-06-27 PM 1:43
- */
-
 package com.example.aop.dto;
 
 import lombok.Data;

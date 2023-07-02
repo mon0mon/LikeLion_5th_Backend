@@ -1,4 +1,4 @@
-package com.example.aop.dto;
+package com.example.contentstest.dto;
 
 import lombok.Data;
 
